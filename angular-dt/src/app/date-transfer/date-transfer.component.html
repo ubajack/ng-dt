@@ -1,0 +1,65 @@
+<h2>Save with date format</h2>
+
+<form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="name" />
+  </p>
+  <p>
+    <label for="releaseDate">Date: </label>
+    <input
+      id="releaseDate"
+      type="datetime-local"
+      formControlName="releaseDate"
+    />
+  </p>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="retrievedEpisode">
+  <h3>New Episode saved and retrieved from server!</h3>
+  <p>ID: {{ retrievedEpisode.id }}</p>
+  <p>Name: {{ retrievedEpisode.name }}</p>
+  <p>Release date: {{ retrievedEpisode.releaseDate | date : "full" }}</p>
+</div>
+
+<h2>Save with timestamp format</h2>
+
+<form [formGroup]="timestampForm" (ngSubmit)="onSubmitTimestamp()">
+  <p>
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="name" />
+  </p>
+  <p>
+    <label for="releaseDate">Timestamp: </label>
+    <input id="releaseDate" type="number" formControlName="releaseDate" />
+  </p>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div *ngIf="retrievedTimestampEpisode">
+  <h3>New Episode saved and retrieved from server!</h3>
+  <p>ID: {{ retrievedTimestampEpisode.id }}</p>
+  <p>Name: {{ retrievedTimestampEpisode.name }}</p>
+  <p>
+    Release date: {{ retrievedTimestampEpisode.releaseDate | date : "full" }}
+  </p>
+</div>
+
+<div>
+  <h2>Retrieve episode</h2>
+  <p>
+    <label for="id">ID: </label>
+    <input id="id" type="number" [(ngModel)]="idToRetrieve" />
+  </p>
+  <button type="submit" (click)="retrieveEpisode()">Submit</button>
+</div>
+
+<div *ngIf="retrievedEpisodeFromId">
+  <h3>Episode retrieved from server!</h3>
+  <p>ID: {{ retrievedEpisodeFromId.id }}</p>
+  <p>Name: {{ retrievedEpisodeFromId.name }}</p>
+  <p>Release date: {{ retrievedEpisodeFromId.releaseDate | date : "full" }}</p>
+</div>
